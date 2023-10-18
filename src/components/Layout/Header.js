@@ -1,7 +1,6 @@
 import { Fragment } from "react";
-
 import classes from "./cssFiles/Header.module.css";
-import mealsImage from "../../assets/meals.jpg";
+import mealsImg from "../../assets/meals.jpg";
 import HeaderCartButton from "./HeaderCartButton";
 
 function Header(props) {
@@ -12,7 +11,7 @@ function Header(props) {
         <HeaderCartButton showingCart={props.toShowCart} />
       </header>
       <div className={classes["main-image"]}>
-        <img src={mealsImage} alt="A meals image" />
+        <img src={mealsImg} alt="A meals" />
       </div>
     </Fragment>
   );

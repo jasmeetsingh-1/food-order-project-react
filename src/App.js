@@ -4,8 +4,6 @@ import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
 import CardProvider from "./components/store/CartProvider";
 
-const cartItems = [];
-
 function App() {
   const [showingCart, setShowingCart] = useState(false);
 

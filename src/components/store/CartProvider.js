@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer } from "react";
 import CartContext from "./cart-context";
 
 function cartReducer(state, action) {
@@ -9,7 +9,7 @@ function cartReducer(state, action) {
 
     let newItem;
 
-    if (indexOFItem != -1) {
+    if (indexOFItem !== -1) {
       const temp = state.items[indexOFItem];
       newItem = {
         ...temp,
@@ -36,9 +36,9 @@ function cartReducer(state, action) {
   if (action.type === "remove") {
     const indexOFItem = state.items.findIndex((item) => item.id === action.id);
     const newTotalAmount = state.totalAmount - state.items[indexOFItem].price;
-    if (state.items[indexOFItem].amount == 1) {
+    if (state.items[indexOFItem].amount === 1) {
       //remove completed
-      const updatedItems = state.items.filter((temp) => temp.id != action.id);
+      const updatedItems = state.items.filter((temp) => temp.id !== action.id);
       return {
         items: updatedItems,
         totalAmount: newTotalAmount,

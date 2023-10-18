@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
 import CartContext from "../store/cart-context";
@@ -26,7 +26,7 @@ function Cart(props) {
     cartcontextItems.clearCart();
   }
 
-  const cartItems = (
+  const cart = (
     <ul className={classes["cart-items"]}>
       {itemsArrays.map((item) => {
         totalAmount = totalAmount + item.price * item.amount;
@@ -46,7 +46,7 @@ function Cart(props) {
 
   return (
     <Modal onClick={props.toCloseCart}>
-      {cartItems}
+      {cart}
       <div className={classes.total}>
         <span>Total Amount</span>
         <span>₹{totalAmount}</span>
@@ -66,5 +66,3 @@ function Cart(props) {
   );
 }
 export default Cart;
-
-//whole cart should be a modal so try doing that
