@@ -10,42 +10,41 @@ function AvailableMeals() {
   return (
     <div>
       {/* <Card className={classes["menu-card"]}> */}
-      <div id="tabs">
-        <menu>
-          <button
-            className={activeContentIndex === 0 ? "active" : ""}
-            onClick={() => setActiveContentIndex(0)}
-          >
-            Soup (20)
-          </button>
-          <button
-            className={activeContentIndex === 1 ? "active" : ""}
-            onClick={() => setActiveContentIndex(1)}
-          >
-            Sandwich/Burger/Wraps (9)
-          </button>
-          <button
-            className={activeContentIndex === 2 ? "active" : ""}
-            onClick={() => setActiveContentIndex(2)}
-          >
-            Pizza (11)
-          </button>
-          <button
-            className={activeContentIndex === 3 ? "active" : ""}
-            onClick={() => setActiveContentIndex(3)}
-          >
-            Bowls (12)
-          </button>
-          <button
-            className={activeContentIndex === 4 ? "active" : ""}
-            onClick={() => setActiveContentIndex(4)}
-          >
-            Desserts (5)
-          </button>
-        </menu>
-      </div>
-      {/* </Card> */}
       <Card>
+        <div id="tabs">
+          <menu>
+            <button
+              className={activeContentIndex === 0 ? "active" : ""}
+              onClick={() => setActiveContentIndex(0)}
+            >
+              Soup (20)
+            </button>
+            <button
+              className={activeContentIndex === 1 ? "active" : ""}
+              onClick={() => setActiveContentIndex(1)}
+            >
+              Sandwich/Burger/Wraps (9)
+            </button>
+            <button
+              className={activeContentIndex === 2 ? "active" : ""}
+              onClick={() => setActiveContentIndex(2)}
+            >
+              Pizza (11)
+            </button>
+            <button
+              className={activeContentIndex === 3 ? "active" : ""}
+              onClick={() => setActiveContentIndex(3)}
+            >
+              Bowls (12)
+            </button>
+            <button
+              className={activeContentIndex === 4 ? "active" : ""}
+              onClick={() => setActiveContentIndex(4)}
+            >
+              Desserts (5)
+            </button>
+          </menu>
+        </div>
         <section className={classes.meals}>
           <ul>
             {content[activeContentIndex].map((meal, index) => (
