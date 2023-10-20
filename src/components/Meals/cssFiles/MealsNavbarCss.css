@@ -1,0 +1,54 @@
+#tabs {
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  background-color: 282f33;
+  /* width: 100; */
+  margin: 2rem auto;
+  max-width: 50rem;
+  margin: 2rem auto; /* Center the menu horizontally */
+  overflow: hidden;
+  text-align: center; /* Center the text inside the menu items */
+}
+
+#tabs menu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.25rem;
+  justify-content: space-evenly; /* Center the menu items horizontally */
+}
+
+#tabs button {
+  border-color: #8b4513;
+  color: #fff;
+  /* box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db; */
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 #8b4513 inset, 0 0 10px 4px #8b4513;
+  }
+
+  font: inherit;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background-color: #282f33;
+  border: none;
+  /* border-bottom-color: #48d9f3; */
+  /* color: #e0eff1; */
+  border-radius: 4px 4px 0 0;
+  border-radius: 4px;
+  padding: 1rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+#tabs button:hover,
+#tabs button.active {
+  background-color: #8b4513; /* Default color */
+  color: white;
+}
+
+#tabs button:hover {
+  background-color: #b95f1f; /* Brown color on hover */
+}

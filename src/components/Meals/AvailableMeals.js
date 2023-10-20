@@ -1,52 +1,68 @@
+import { useState } from "react";
 import classes from "./cssFiles/AvailableMeals.module.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-
-const DUMMY_MEALS = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 229,
-  },
-  {
-    id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 165,
-  },
-  {
-    id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
-    price: 129,
-  },
-  {
-    id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 189,
-  },
-];
+import content from "./MealsData";
+import "./cssFiles/MealsNavbarCss.css";
 
 function AvailableMeals() {
-  const mealsList = DUMMY_MEALS.map((meal) => {
-    return (
-      <MealItem
-        id={meal.id}
-        key={meal.id}
-        name={meal.name}
-        description={meal.description}
-        price={meal.price}
-      />
-    );
-  });
+  const [activeContentIndex, setActiveContentIndex] = useState(0);
   return (
-    <section className={classes.meals}>
+    <div>
+      {/* <Card className={classes["menu-card"]}> */}
+      <div id="tabs">
+        <menu>
+          <button
+            className={activeContentIndex === 0 ? "active" : ""}
+            onClick={() => setActiveContentIndex(0)}
+          >
+            Soup (20)
+          </button>
+          <button
+            className={activeContentIndex === 1 ? "active" : ""}
+            onClick={() => setActiveContentIndex(1)}
+          >
+            Sandwich/Burger/Wraps (9)
+          </button>
+          <button
+            className={activeContentIndex === 2 ? "active" : ""}
+            onClick={() => setActiveContentIndex(2)}
+          >
+            Pizza (11)
+          </button>
+          <button
+            className={activeContentIndex === 3 ? "active" : ""}
+            onClick={() => setActiveContentIndex(3)}
+          >
+            Bowls (12)
+          </button>
+          <button
+            className={activeContentIndex === 4 ? "active" : ""}
+            onClick={() => setActiveContentIndex(4)}
+          >
+            Desserts (5)
+          </button>
+        </menu>
+      </div>
+      {/* </Card> */}
       <Card>
-        <ul>{mealsList}</ul>
+        <section className={classes.meals}>
+          <ul>
+            {content[activeContentIndex].map((meal, index) => (
+              <li key={index}>
+                <MealItem
+                  id={meal.id}
+                  key={meal.id}
+                  name={meal.name}
+                  description={meal.description}
+                  price={meal.price}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
       </Card>
-    </section>
+    </div>
   );
 }
 
