@@ -2,13 +2,11 @@
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 14px;
-  background-color: 282f33;
-  /* width: 100; */
+  background-color: #282f33;
   margin: 2rem auto;
   max-width: 50rem;
-  margin: 2rem auto; /* Center the menu horizontally */
   overflow: hidden;
-  text-align: center; /* Center the text inside the menu items */
+  text-align: center;
 }
 
 #tabs menu {
@@ -16,39 +14,43 @@
   padding: 0;
   display: flex;
   gap: 0.25rem;
-  justify-content: space-evenly; /* Center the menu items horizontally */
+  justify-content: center; /* Center the menu items horizontally */
 }
 
 #tabs button {
   border-color: #8b4513;
   color: #fff;
-  /* box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db; */
   transition: all 150ms ease-in-out;
-
-  &:hover {
-    box-shadow: 0 0 10px 0 #8b4513 inset, 0 0 10px 4px #8b4513;
-  }
-
   font: inherit;
   font-size: 1.1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   background-color: #282f33;
   border: none;
-  /* border-bottom-color: #48d9f3; */
-  /* color: #e0eff1; */
-  border-radius: 4px 4px 0 0;
   border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   padding: 1rem 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease-out;
+  margin: 0.2rem;
 }
 
 #tabs button:hover,
 #tabs button.active {
-  background-color: #8b4513; /* Default color */
+  background-color: #8b4513;
   color: white;
 }
 
 #tabs button:hover {
-  background-color: #b95f1f; /* Brown color on hover */
+  background-color: #b95f1f;
+}
+
+/* Responsive CSS */
+@media only screen and (max-width: 768px) {
+  #tabs menu {
+    flex-direction: column; /* Stack menu items vertically on smaller screens */
+  }
+
+  #tabs button {
+    width: 100%; /* Make buttons fill the container */
+    margin-bottom: 0.25rem; /* Add some spacing between buttons */
+  }
 }

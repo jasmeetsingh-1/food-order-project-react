@@ -24,8 +24,6 @@ function Modal(props) {
         <ModalOverLay>{props.children}</ModalOverLay>,
         portalElement
       )}
-      <Backdrop />
-      <ModalOverLay>{props.children}</ModalOverLay>
     </Fragment>
   );
 }

@@ -26,6 +26,11 @@ function Cart(props) {
     cartcontextItems.clearCart();
   }
 
+  function OnOrderClickHandler() {
+    props.toCloseCart();
+    props.toShowOrders();
+  }
+
   const cart = (
     <ul className={classes["cart-items"]}>
       {itemsArrays.map((item) => {
@@ -60,7 +65,11 @@ function Cart(props) {
             Clear
           </button>
         )}
-        {hasItems && <button className={classes.button}>Order</button>}
+        {hasItems && (
+          <button className={classes.button} onClick={OnOrderClickHandler}>
+            Order
+          </button>
+        )}
       </div>
     </Modal>
   );
