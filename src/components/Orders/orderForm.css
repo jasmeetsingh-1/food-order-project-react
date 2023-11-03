@@ -47,9 +47,12 @@ hr {
 
 .container {
   max-width: 40rem;
-  padding: 5vw 2rem;
+  
+  padding: 3vw 2rem;
   margin: 0 auto;
   height: auto;
+  background-color: white;
+  color: black;
 }
 
 .form {
@@ -101,21 +104,58 @@ hr {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.headingAndBackButton {
+  display: flex;
+  justify-content: space-between;
+}
+
 .button {
-  background-color: #000;
+  text-align: right;
+}
+
+.button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.button .continueButton:hover,
+.button .continueButton:active {
+  background-color: #5a1a01;
+  border-color: #5a1a01;
+  color: white;
+}
+
+.button .backButton {
+  color: #8a2b06;
+}
+
+.backButton:hover {
+  background-color: #8a2b06;
+  color: white;
+}
+.continueButton {
+  background-color: #000000b0;
   text-transform: uppercase;
   font-size: 0.8rem;
   font-weight: 600;
+  text-align: center;
   display: block;
   color: #fff;
   width: 100%;
   padding: 1rem;
-  margin-top: 2rem;
+  margin-right: 2px;
+  margin-top: 1rem;
   border-radius: 0.25rem;
   border: 0;
   cursor: pointer;
   outline: 0;
 }
-.button:focus-visible {
-  background-color: #333;
+
+.continueButton:hover {
+  background-color: black;
 }

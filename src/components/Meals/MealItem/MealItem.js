@@ -17,7 +17,7 @@ function MealItem(props) {
   }
 
   return (
-    <li className={classes.meal}>
+    <div className={classes.meal}>
       <div>
         <h3>{props.name}</h3>
         <div className={classes.description}>{props.description}</div>
@@ -25,7 +25,7 @@ function MealItem(props) {
       </div>
       {/* <MealItemForm id={props.id}/> */}
       <MealItemForm id={props.id} toAddInCart={addingItemToCart} />
-    </li>
+    </div>
   );
 }
 

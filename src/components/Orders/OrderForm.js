@@ -1,3 +1,4 @@
+// import React, { useCallback, useEffect, useState } from "react";
 import React from "react";
 import Modal from "../UI/Modal";
 import "../Orders/orderForm.css";
@@ -41,69 +42,124 @@ const indianStates = [
   { name: "Lakshadweep", value: "lakshadweep" },
 ];
 function OrderForm(props) {
-  return (
-    <Modal>
-      <div class="container">
-        <h1>Shipping</h1>
-        <p>Please enter your shipping details.</p>
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [number, setNumber] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [country, setCountry] = useState("");
+  // const [zipCode, setZipCode] = useState("");
+  // const [city, setCity] = useState("");
+  // const [state, setState] = useState("");
+
+  // function inputHandler(id, value) {
+  //   if (id === "firstname") {
+  //     setFirstName(value);
+  //   } else if (id === "lastname") {
+  //     setLastName(value);
+  //   } else if (id === "number") {
+  //     setNumber(value);
+  //   } else if (id === "address") {
+  //     setAddress(value);
+  //   } else if (id === "country") {
+  //     setCountry(value);
+  //   } else if (id === "zipcode") {
+  //     setZipCode(value);
+  //   } else if (id === "city") {
+  //     setCity(value);
+  //   } else if (id === "state") {
+  //     setState(value);
+  //   }
+  // }
+
+  function continueButtonHandler() {
+    props.toContinueHandler();
+  }
+  // useEffect(() => {
+  //   console.log("firstname", firstName);
+  // }, [firstName]);
+
+  const orderInfoForm = () => {
+    return (
+      <div className="container">
+        <div className="headingAndBackButton">
+          <h1>Address</h1>
+          <button className="button backButton" onClick={props.toGoBack}>
+            back
+          </button>
+        </div>
+        <p>Please enter your address details.</p>
         <hr />
-        <div class="form">
-          <div class="fields fields--2">
-            <label class="field">
-              <span class="field__label" for="firstname">
+        <div className="form">
+          <div className="fields fields--2">
+            <label className="field">
+              <span className="field__label" htmlFor="firstname">
                 First name
               </span>
-              <input class="field__input" type="text" id="firstname" />
+              <input className="field__input" type="text" id="firstname" />
             </label>
-            <label class="field">
-              <span class="field__label" for="lastname">
+            <label className="field">
+              <span className="field__label" htmlFor="lastname">
                 Last name
               </span>
-              <input class="field__input" type="text" id="lastname" />
+              <input className="field__input" type="text" id="lastname" />
             </label>
           </div>
-          <label class="field">
-            <span class="field__label" for="address">
+          <label className="field">
+            <span className="field__label" htmlFor="address">
               Address
             </span>
-            <input class="field__input" type="text" id="address" />
+            <input className="field__input" type="text" id="address" />
           </label>
-          <label class="field">
-            <span class="field__label" for="country">
-              Country
-            </span>
-            <input class="field__input" id="country" type="text" />
-          </label>
-          <div class="fields fields--3">
-            <label class="field">
-              <span class="field__label" for="zipcode">
+          <div className="fields fields--2">
+            <label className="field">
+              <span className="field__label" htmlFor="country">
+                Country
+              </span>
+              <input className="field__input" type="text" id="country" />
+            </label>
+            <label className="field">
+              <span className="field__label" htmlFor="number">
+                Contact no.:
+              </span>
+              <input className="field__input" type="number" id="number" />
+            </label>
+          </div>
+          <div className="fields fields--3">
+            <label className="field">
+              <span className="field__label" htmlFor="zipcode">
                 Zip code
               </span>
-              <input class="field__input" type="number" id="zipcode" />
+              <input className="field__input" type="number" id="zipcode" />
             </label>
-            <label class="field">
-              <span class="field__label" for="city">
+            <label className="field">
+              <span className="field__label" htmlFor="city">
                 City
               </span>
-              <input class="field__input" type="text" id="city" />
+              <input className="field__input" type="text" id="city" />
             </label>
-            <label class="field">
-              <span class="field__label" for="state">
+            <label className="field">
+              <span className="field__label" htmlFor="state">
                 State
               </span>
-              <select class="field__input" id="state">
+              <select className="field__input" id="state">
                 {indianStates.map((state) => {
-                  return <option value={state.value}>{state.name}</option>;
+                  return (
+                    <option value={state.value} key={state.value}>
+                      {state.name}
+                    </option>
+                  );
                 })}
               </select>
             </label>
           </div>
         </div>
-        <button class="button" onClick={props.toCloseOrderFrom}>
+        <button className="continueButton" onClick={continueButtonHandler}>
           Continue
         </button>
       </div>
-    </Modal>
-  );
+    );
+  };
+  // return orderInfoForm();
+  return <Modal onClick={props.toCloseOrderFrom}>{orderInfoForm()}</Modal>;
 }
 export default OrderForm;
