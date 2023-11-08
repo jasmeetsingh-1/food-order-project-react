@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
-import CartProvider from "./components/store/CartProvider";
 import OrderForm from "./components/Orders/OrderForm";
 import Feedback from "./components/Feedback/Feedback";
 import CartContext from "./components/store/cart-context";
@@ -35,7 +34,8 @@ function App() {
   }
 
   function closeFeedback() {
-    cartContext.clearCart(); // Use CartContext directly to clear the cart
+    cartContext.clearCart();
+    console.log("sumbit button clicked");
     setShowingFeedback(false);
   }
 
@@ -45,9 +45,13 @@ function App() {
   }
 
   return (
-    <CartProvider>
+    <React.Fragment>
       {showingOrders && (
-        <OrderForm toCloseOrderFrom={closingOrderForm} toContinueHandler={hideOrders} toGoBack={goBack} />
+        <OrderForm
+          toCloseOrderFrom={closingOrderForm}
+          toContinueHandler={hideOrders}
+          toGoBack={goBack}
+        />
       )}
       {showingFeedback && <Feedback onSubmit={closeFeedback} />}
       {showingCart && <Cart toCloseCart={hideCart} toShowOrders={showOrders} />}
@@ -55,7 +59,7 @@ function App() {
       <main>
         <Meals />
       </main>
-    </CartProvider>
+    </React.Fragment>
   );
 }
 

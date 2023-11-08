@@ -71,7 +71,8 @@ function OrderForm(props) {
   //   }
   // }
 
-  function continueButtonHandler() {
+  function onSubmitHandler(event) {
+    event.preventDefault();
     props.toContinueHandler();
   }
   // useEffect(() => {
@@ -89,39 +90,59 @@ function OrderForm(props) {
         </div>
         <p>Please enter your address details.</p>
         <hr />
-        <div className="form">
+        <form className="form" onSubmit={onSubmitHandler}>
           <div className="fields fields--2">
             <label className="field">
               <span className="field__label" htmlFor="firstname">
                 First name
               </span>
-              <input className="field__input" type="text" id="firstname" />
+              <input
+                className="field__input"
+                type="text"
+                id="firstname"
+                required
+              />
             </label>
             <label className="field">
               <span className="field__label" htmlFor="lastname">
                 Last name
               </span>
-              <input className="field__input" type="text" id="lastname" />
+              <input
+                className="field__input"
+                type="text"
+                id="lastname"
+                required
+              />
             </label>
           </div>
           <label className="field">
             <span className="field__label" htmlFor="address">
               Address
             </span>
-            <input className="field__input" type="text" id="address" />
+            <input className="field__input" type="text" id="address" required />
           </label>
           <div className="fields fields--2">
             <label className="field">
               <span className="field__label" htmlFor="country">
                 Country
               </span>
-              <input className="field__input" type="text" id="country" />
+              <input
+                className="field__input"
+                type="text"
+                id="country"
+                required
+              />
             </label>
             <label className="field">
               <span className="field__label" htmlFor="number">
                 Contact no.:
               </span>
-              <input className="field__input" type="number" id="number" />
+              <input
+                className="field__input"
+                type="number"
+                id="number"
+                required
+              />
             </label>
           </div>
           <div className="fields fields--3">
@@ -129,19 +150,24 @@ function OrderForm(props) {
               <span className="field__label" htmlFor="zipcode">
                 Zip code
               </span>
-              <input className="field__input" type="number" id="zipcode" />
+              <input
+                className="field__input"
+                type="number"
+                id="zipcode"
+                required
+              />
             </label>
             <label className="field">
               <span className="field__label" htmlFor="city">
                 City
               </span>
-              <input className="field__input" type="text" id="city" />
+              <input className="field__input" type="text" id="city" required />
             </label>
             <label className="field">
               <span className="field__label" htmlFor="state">
                 State
               </span>
-              <select className="field__input" id="state">
+              <select className="field__input" id="state" required>
                 {indianStates.map((state) => {
                   return (
                     <option value={state.value} key={state.value}>
@@ -152,14 +178,13 @@ function OrderForm(props) {
               </select>
             </label>
           </div>
-        </div>
-        <button className="continueButton" onClick={continueButtonHandler}>
-          Continue
-        </button>
+          <button type="submit" className="continueButton">
+            Continue
+          </button>
+        </form>
       </div>
     );
   };
-  // return orderInfoForm();
   return <Modal onClick={props.toCloseOrderFrom}>{orderInfoForm()}</Modal>;
 }
 export default OrderForm;

@@ -59,6 +59,7 @@ function cartReducer(state, action) {
   }
 
   if (action.type === "clear") {
+    console.log("called clear function");
     return {
       items: [],
       totalAmount: 0,
@@ -84,7 +85,7 @@ function CardProvider(props) {
   }
 
   function clearCartItems() {
-    cartReducerFunction({ type: "clear", id: 1 });
+    cartReducerFunction({ type: "clear" });
   }
 
   const cartContext = {
