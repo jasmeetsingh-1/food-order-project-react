@@ -6,58 +6,40 @@
   --color-light-gray: #f7f7fa;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+.headingAndBackButton h1 {
+  font-weight: bold;
+  display: block;
 }
 
-html {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  box-sizing: border-box;
-}
-
-@supports (font-variation-settings: normal) {
-  html {
-    font-family: "Inter var", sans-serif;
-  }
-}
-
-body {
-  margin: 0;
-}
-
-h1 {
-  margin-bottom: 1rem;
-  margin: 0;
-}
-
-p {
-  color: var(--color-gray);
-}
-
-hr {
-  height: 1px;
-  width: 100%;
-  background-color: var(--color-light-gray);
-  border: 0;
-  margin: 2rem 0;
+.headingAndBackButton {
+  font-family: "Overpass", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
 }
 
 .container {
-  max-width: 40rem;
-
-  padding: 3vw 2rem;
   margin: 0 auto;
   height: auto;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.96);
   color: black;
+  border-radius: 14px;
+  max-width: 45rem;
+  width: 90%;
+  margin-top: -16rem;
+  position: relative;
+  padding: 1rem;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+}
+
+.container p {
+  margin: 0px;
 }
 
 .form {
   display: grid;
   grid-gap: 1rem;
+  margin: 1rem;
 }
 
 .field {
@@ -75,6 +57,12 @@ hr {
   /* font-weight: 300; */
   text-transform: uppercase;
   margin-bottom: 0.25rem;
+}
+
+.field p {
+  color: red; /* Change error text color to red */
+  font-size: 0.8rem; /* Decrease error text size */
+  margin: 0.5rem 0 0; /* Adjust margin for better spacing */
 }
 
 .field__input {
@@ -146,14 +134,19 @@ hr {
   text-align: center;
   display: block;
   color: #fff;
-  width: 100%;
+  width: 50%;
   padding: 1rem;
   margin-right: 2px;
   margin-top: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 8px;
   border: 0;
   cursor: pointer;
   outline: 0;
+}
+
+.outer-div-button-continue {
+  display: flex;
+  justify-content: center;
 }
 
 .continueButton:hover {

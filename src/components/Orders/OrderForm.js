@@ -1,7 +1,31 @@
 // import React, { useCallback, useEffect, useState } from "react";
-import React from "react";
-import Modal from "../UI/Modal";
-import "../Orders/orderForm.css";
+import React, { useState } from "react";
+import "./orderForm.css";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import Header from "../Layout/Header";
+import Feedback from "../Feedback/Feedback";
+
+const validationSchema = Yup.object({
+  firstname: Yup.string().required("*Mandatory"),
+  lastname: Yup.string().required("*Mandatory"),
+  address: Yup.string().required("*Mandatory"),
+  country: Yup.string().required("*Mandatory"),
+  number: Yup.number().required("*Mandatory"),
+  zipcode: Yup.number().required("*Mandatory"),
+  city: Yup.string().required("*Mandatory"),
+});
+const initialValues = {
+  firstname: "",
+  lastname: "",
+  address: "",
+  country: "",
+  number: "",
+  zipcode: "",
+  city: "",
+  state: "",
+};
 const indianStates = [
   { name: "--- Select State ---", value: "yetTOSelect" },
   { name: "Uttar Pradesh", value: "uttarPradesh" },
@@ -42,55 +66,48 @@ const indianStates = [
   { name: "Lakshadweep", value: "lakshadweep" },
 ];
 function OrderForm(props) {
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [number, setNumber] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [country, setCountry] = useState("");
-  // const [zipCode, setZipCode] = useState("");
-  // const [city, setCity] = useState("");
-  // const [state, setState] = useState("");
+  const [showFeedbackModal, setShowingFeedbackModal] = useState(false);
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      const formdata = {
+        firstname: values.firstname,
+        lastname: values.lastname,
+        address: values.address,
+        country: values.country,
+        number: values.number,
+        zipcode: values.zipcode,
+        city: values.city,
+        state: values.state,
+      };
+      console.log(formdata);
+      dispatch({ type: "submit", data: formdata });
+      setShowingFeedbackModal(true);
+      // formik.resetForm();
+    },
+  });
 
-  // function inputHandler(id, value) {
-  //   if (id === "firstname") {
-  //     setFirstName(value);
-  //   } else if (id === "lastname") {
-  //     setLastName(value);
-  //   } else if (id === "number") {
-  //     setNumber(value);
-  //   } else if (id === "address") {
-  //     setAddress(value);
-  //   } else if (id === "country") {
-  //     setCountry(value);
-  //   } else if (id === "zipcode") {
-  //     setZipCode(value);
-  //   } else if (id === "city") {
-  //     setCity(value);
-  //   } else if (id === "state") {
-  //     setState(value);
-  //   }
-  // }
-
-  function onSubmitHandler(event) {
-    event.preventDefault();
-    props.toContinueHandler();
-  }
-  // useEffect(() => {
-  //   console.log("firstname", firstName);
-  // }, [firstName]);
-
-  const orderInfoForm = () => {
-    return (
+  return (
+    <div>
+      {showFeedbackModal && (
+        <Feedback
+          onSubmit={() => {
+            setShowingFeedbackModal(false);
+          }}
+          toCloseCart={() => {
+            setShowingFeedbackModal(false);
+          }}
+        />
+      )}
+      <Header toShowCart={props.toShowCart}></Header>
       <div className="container">
         <div className="headingAndBackButton">
           <h1>Address</h1>
-          <button className="button backButton" onClick={props.toGoBack}>
-            back
-          </button>
+          <p>Please enter your address details.</p>
         </div>
-        <p>Please enter your address details.</p>
-        <hr />
-        <form className="form" onSubmit={onSubmitHandler}>
+        <form className="form" onSubmit={formik.handleSubmit}>
           <div className="fields fields--2">
             <label className="field">
               <span className="field__label" htmlFor="firstname">
@@ -100,8 +117,13 @@ function OrderForm(props) {
                 className="field__input"
                 type="text"
                 id="firstname"
-                required
+                name="firstname"
+                value={formik.values.firstname}
+                onChange={formik.handleChange}
               />
+              {formik.errors.firstname && formik.touched.firstname ? (
+                <p>{formik.errors.firstname}</p>
+              ) : null}
             </label>
             <label className="field">
               <span className="field__label" htmlFor="lastname">
@@ -111,15 +133,30 @@ function OrderForm(props) {
                 className="field__input"
                 type="text"
                 id="lastname"
-                required
+                name="lastname"
+                value={formik.values.lastname}
+                onChange={formik.handleChange}
               />
+              {formik.errors.lastname && formik.touched.lastname ? (
+                <p>{formik.errors.lastname}</p>
+              ) : null}
             </label>
           </div>
           <label className="field">
             <span className="field__label" htmlFor="address">
               Address
             </span>
-            <input className="field__input" type="text" id="address" required />
+            <input
+              className="field__input"
+              type="text"
+              id="address"
+              name="address"
+              value={formik.values.address}
+              onChange={formik.handleChange}
+            />
+            {formik.errors.address && formik.touched.address ? (
+              <p>{formik.errors.address}</p>
+            ) : null}
           </label>
           <div className="fields fields--2">
             <label className="field">
@@ -130,8 +167,13 @@ function OrderForm(props) {
                 className="field__input"
                 type="text"
                 id="country"
-                required
+                name="country"
+                value={formik.values.country}
+                onChange={formik.handleChange}
               />
+              {formik.errors.country && formik.touched.country ? (
+                <p>{formik.errors.country}</p>
+              ) : null}
             </label>
             <label className="field">
               <span className="field__label" htmlFor="number">
@@ -141,8 +183,13 @@ function OrderForm(props) {
                 className="field__input"
                 type="number"
                 id="number"
-                required
+                name="number"
+                value={formik.values.number}
+                onChange={formik.handleChange}
               />
+              {formik.errors.number && formik.touched.number ? (
+                <p>{formik.errors.number}</p>
+              ) : null}
             </label>
           </div>
           <div className="fields fields--3">
@@ -154,20 +201,41 @@ function OrderForm(props) {
                 className="field__input"
                 type="number"
                 id="zipcode"
-                required
+                name="zipcode"
+                value={formik.values.zipcode}
+                onChange={formik.handleChange}
               />
+              {formik.errors.zipcode && formik.touched.zipcode ? (
+                <p>{formik.errors.zipcode}</p>
+              ) : null}
             </label>
             <label className="field">
               <span className="field__label" htmlFor="city">
                 City
               </span>
-              <input className="field__input" type="text" id="city" required />
+              <input
+                className="field__input"
+                type="text"
+                id="city"
+                name="city"
+                value={formik.values.city}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.city && formik.touched.city ? (
+                <p>{formik.errors.city}</p>
+              ) : null}
             </label>
             <label className="field">
               <span className="field__label" htmlFor="state">
                 State
               </span>
-              <select className="field__input" id="state" required>
+              <select
+                className="field__input"
+                id="state"
+                name="state"
+                onChange={formik.handleChange}
+                value={formik.values.state}
+              >
                 {indianStates.map((state) => {
                   return (
                     <option value={state.value} key={state.value}>
@@ -178,13 +246,14 @@ function OrderForm(props) {
               </select>
             </label>
           </div>
-          <button type="submit" className="continueButton">
-            Continue
-          </button>
+          <div className="outer-div-button-continue">
+            <button type="submit" className="continueButton">
+              Continue
+            </button>
+          </div>
         </form>
       </div>
-    );
-  };
-  return <Modal onClick={props.toCloseOrderFrom}>{orderInfoForm()}</Modal>;
+    </div>
+  );
 }
 export default OrderForm;
