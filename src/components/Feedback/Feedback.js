@@ -3,7 +3,7 @@ import "./feedback.css";
 
 function Feedback(props) {
   return (
-    <Modal onClick={props.toCloseCart}>
+    <Modal onClick={props.toCloseFeedback}>
       <div className="rating-card">
         <div className="rating-card__front">
           <div className="rating-card__img">

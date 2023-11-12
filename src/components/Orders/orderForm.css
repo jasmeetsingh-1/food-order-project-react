@@ -14,8 +14,28 @@
 .headingAndBackButton {
   font-family: "Overpass", sans-serif !important;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding-left: 1rem;
+}
+
+.headingAndBackButton button {
+  width: 115px;
+  height: 40px;
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: #4d1701bf;
+  color: white;
+  padding: 0.75rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.headingAndBackButton button:hover {
+  background-color: #4d1701e4;
 }
 
 .container {

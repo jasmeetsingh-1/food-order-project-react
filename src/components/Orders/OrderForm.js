@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import Header from "../Layout/Header";
 import Feedback from "../Feedback/Feedback";
+import { useHistory } from "react-router-dom";
 
 const validationSchema = Yup.object({
   firstname: Yup.string().required("*Mandatory"),
@@ -68,6 +69,8 @@ const indianStates = [
 function OrderForm(props) {
   const [showFeedbackModal, setShowingFeedbackModal] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
@@ -89,10 +92,15 @@ function OrderForm(props) {
     },
   });
 
+  const handleBackButtonClick = () => {
+    history.push("/");
+  };
+
   return (
     <div>
       {showFeedbackModal && (
         <Feedback
+          toCloseFeedback={handleBackButtonClick}
           onSubmit={() => {
             setShowingFeedbackModal(false);
           }}
@@ -105,6 +113,11 @@ function OrderForm(props) {
       <div className="container">
         <div className="headingAndBackButton">
           <h1>Address</h1>
+          <div style={{ alignItems: "center", display: "flex" }}>
+            <button onClick={handleBackButtonClick}>Back</button>
+          </div>
+        </div>
+        <div style={{ paddingLeft: "1rem" }}>
           <p>Please enter your address details.</p>
         </div>
         <form className="form" onSubmit={formik.handleSubmit}>

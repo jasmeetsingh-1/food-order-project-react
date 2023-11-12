@@ -65,6 +65,9 @@ function App() {
                 toContinueHandler={hideOrders}
                 toGoBack={goBack}
               />
+              {showingCart && (
+                <Cart toCloseCart={hideCart} toShowOrders={showOrders} />
+              )}
             </Route>
             <Route path="/" exact>
               {showingCart && (

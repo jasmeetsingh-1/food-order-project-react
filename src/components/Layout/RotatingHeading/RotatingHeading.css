@@ -1,0 +1,29 @@
+.wrapper {
+  box-sizing: content-box;
+  height: 50px;
+  display: flex;
+  border-radius: 8px;
+}
+.wrapper .words {
+  overflow: hidden;
+}
+.wrapper .words span {
+  display: block;
+  height: 100%;
+  color: #f3f4f5;
+  font-size: 35px;
+  font-weight: bold;
+  animation: spin_words 6s infinite;
+}
+@keyframes spin_words {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  33.33% {
+    transform: translateY(-100%);
+  }
+  66.66% {
+    transform: translateY(-200%);
+  }
+}
