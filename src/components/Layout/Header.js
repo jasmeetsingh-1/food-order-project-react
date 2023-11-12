@@ -7,7 +7,7 @@ import RotatingText from "./RotatingHeading/RotatingHeading";
 function Header(props) {
   return (
     <Fragment>
-      <header className={classes.header}>
+      <header className={classes.headerHeading}>
         <RotatingText />
         <HeaderCartButton showingCart={props.toShowCart} />
       </header>
