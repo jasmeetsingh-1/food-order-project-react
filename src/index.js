@@ -1,17 +1,18 @@
 import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import CartProvider from "./components/store/CartProvider";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <CartProvider>
+  <CartProvider>
+    <StrictMode>
+      <BrowserRouter>
         <App />
-      </CartProvider>
-    </React.StrictMode>
-  </Router>,
+      </BrowserRouter>
+    </StrictMode>
+  </CartProvider>,
   document.getElementById("root")
 );

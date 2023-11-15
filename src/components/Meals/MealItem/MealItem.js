@@ -8,6 +8,8 @@ function MealItem(props) {
   const context = useContext(CartContext);
 
   function addingItemToCart(amount) {
+    // const CartElementToAdd = {};
+    // console.log(CartElementToAdd);
     context.addItem({
       id: props.id,
       amount: amount,

@@ -78,6 +78,7 @@ function CardProvider(props) {
   const [cartState, cartReducerFunction] = useReducer(cartReducer, initial);
 
   function addItemIntoCart(item) {
+    console.log("adding form cart provider");
     cartReducerFunction({ type: "add", item: item });
   }
   function removeItemFromCart(id) {
