@@ -55,6 +55,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route
+          exact
           path="/"
           element={
             <>

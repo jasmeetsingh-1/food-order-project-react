@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import Modal from "../UI/Modal";
@@ -13,7 +13,10 @@ function Cart(props) {
   const [islogged, setIslogged] = useState(false);
   //when islogged is true, pgae navigate ahead to showingorder
   //when islogged is false, page navigate to login page
-  setIslogged(false);
+
+  useEffect(() => {
+    setIslogged(false);
+  }, []);
   const cartcontextItems = useContext(CartContext);
   const itemsArrays = cartcontextItems.items;
   const hasItems = itemsArrays.length > 0;
