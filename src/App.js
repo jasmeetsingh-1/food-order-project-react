@@ -1,35 +1,20 @@
 // import React, { useState, useContext, useEffect } from "react";
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
 import OrderForm from "./components/Orders/OrderForm";
 // import CartContext from "./components/store/cart-context";
 import { Provider } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import store from "./components/OrderFromRedux/store/store";
+import Login from "./components/login/login";
 
 function App() {
   // const cartContext = useContext(CartContext);
   const [showingCart, setShowingCart] = useState(false);
-  const navigate = useNavigate();
   // const [showingOrders, setShowingOrders] = useState(false);
   // const [showingFeedback, setShowingFeedback] = useState(false);
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   // Listen to route changes and force a page reload
-  //   const unlisten = history.listen(() => {
-  //     window.location.reload();
-  //   });
-
-  //   return () => {
-  //     // Clean up the listener when the component unmounts
-  //     unlisten();
-  //   };
-  // }, [history]);
 
   function showCart() {
     setShowingCart(true);
@@ -38,11 +23,6 @@ function App() {
   function hideCart() {
     setShowingCart(false);
     // setShowingFeedback(false);
-  }
-
-  function showOrders() {
-    // history.push("/showingOrder");
-    navigate("/showingOrder");
   }
 
   function hideOrders() {
@@ -63,19 +43,17 @@ function App() {
         <Route
           path="/showingOrder"
           element={
-            <OrderForm
-              toShowCart={showCart}
-              toContinueHandler={hideOrders}
-              toGoBack={goBack}
-            />
+            <>
+              <OrderForm
+                toShowCart={showCart}
+                toContinueHandler={hideOrders}
+                toGoBack={goBack}
+              />
+              {showingCart && <Cart toCloseCart={hideCart} />}
+            </>
           }
         />
-        {showingCart && (
-          <Route
-            path="/"
-            element={<Cart toCloseCart={hideCart} toShowOrders={showOrders} />}
-          />
-        )}
+        <Route path="/login" element={<Login />} />
         <Route
           path="/"
           element={
@@ -84,6 +62,7 @@ function App() {
               <main>
                 <Meals />
               </main>
+              {showingCart && <Cart toCloseCart={hideCart} />}
             </>
           }
         />

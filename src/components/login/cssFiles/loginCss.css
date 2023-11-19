@@ -1,0 +1,174 @@
+@import url("https://rsms.me/inter/inter.css");
+
+:root {
+  --color-gray: #737888;
+  --color-lighter-gray: #e3e5ed;
+  --color-light-gray: #f7f7fa;
+}
+
+.headingAndBackButton h1 {
+  font-weight: bold;
+  display: block;
+}
+
+.headingAndBackButton {
+  font-family: "Overpass", sans-serif !important;
+  display: flex;
+  flex-direction: row;
+  padding-left: 1rem;
+}
+
+.headingAndBackButton button {
+  width: 115px;
+  height: 40px;
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: #4d1701bf;
+  color: white;
+  padding: 0.75rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.headingAndBackButton button:hover {
+  background-color: #4d1701e4;
+}
+
+.container {
+  margin: 0 auto;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.96);
+  color: black;
+  border-radius: 14px;
+  max-width: 45rem;
+  width: 90%;
+  margin-top: -16rem;
+  position: relative;
+  padding: 1rem;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+}
+
+.container p {
+  margin: 0px;
+}
+
+.form {
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.281);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.field__label {
+  color: black;
+  font-size: 0.6rem;
+  /* font-weight: 300; */
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.field p {
+  color: red; /* Change error text color to red */
+  font-size: 0.8rem; /* Decrease error text size */
+  margin: 0.5rem 0 0; /* Adjust margin for better spacing */
+}
+
+.field__input {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
+.field:focus-within {
+  border-color: #000;
+}
+
+.fields {
+  display: grid;
+  grid-gap: 1rem;
+}
+.fields--2 {
+  grid-template-columns: 1fr 1fr;
+}
+.fields--3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.headingAndBackButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  text-align: right;
+}
+
+.button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.button .continueButton:hover,
+.button .continueButton:active {
+  background-color: #5a1a01;
+  border-color: #5a1a01;
+  color: white;
+}
+
+.button .backButton {
+  color: #8a2b06;
+}
+
+.backButton:hover {
+  background-color: #8a2b06;
+  color: white;
+}
+.continueButton {
+  background-color: #000000b0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  color: #fff;
+  width: 50%;
+  padding: 1rem;
+  margin-right: 2px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+}
+
+.outer-div-button-continue {
+  display: flex;
+  justify-content: center;
+}
+
+.continueButton:hover {
+  background-color: black;
+}

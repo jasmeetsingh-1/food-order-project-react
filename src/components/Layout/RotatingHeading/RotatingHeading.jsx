@@ -1,7 +1,7 @@
 import React from "react";
 import "./RotatingHeading.css";
 
-const heading = ["React Meals", "React Meals", "React Meals"];
+const heading = ["ReactBites", "ReactBites", "ReactBites"];
 
 const RotatingText = () => {
   return (

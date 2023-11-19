@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import Modal from "../UI/Modal";
 import "./feedback.css";
+import CartContext from "../store/cart-context";
 
 function Feedback(props) {
+  function onClear() {
+    cartcontextItems.clearCart();
+    props.toCloseFeedback();
+  }
+  const cartcontextItems = useContext(CartContext);
   return (
-    <Modal onClick={props.toCloseFeedback}>
+    <Modal onClick={onClear}>
       <div className="rating-card">
         <div className="rating-card__front">
           <div className="rating-card__img">
@@ -15,7 +22,7 @@ function Feedback(props) {
           <div className="rating-card__content">
             <h2>Thankyou for ordering with us</h2>
             <p>
-              Thank you for choosing React Meals! Your satisfaction is our
+              Thank you for choosing ReactBites! Your satisfaction is our
               priority, and we're dedicated to delivering the best food on time.
               We value your opinion – please take a moment to share your
               valuable feedback with us.
@@ -31,7 +38,7 @@ function Feedback(props) {
             <button>4</button>
             <button>5</button>
           </div>
-          <button className="rating-card__btn" onClick={props.onSubmit}>
+          <button className="rating-card__btn" onClick={onClear}>
             submit
           </button>
         </div>

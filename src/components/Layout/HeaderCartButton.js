@@ -1,4 +1,4 @@
-import CartIcon from "../Cart/CartIcon";
+// import CartIcon from "../Cart/CartIcon";
 import classes from "./cssFiles/HeaderCartButton.module.css";
 import { useContext } from "react";
 import CartContext from "../store/cart-context";
@@ -21,9 +21,9 @@ function HeaderCartButton(props) {
   }
   return (
     <button className={classes.button} onClick={buttonClickedToShowCart}>
-      <span className={classes.CartIcon}>
+      {/* <span className={classes.CartIcon}>
         <CartIcon />
-      </span>
+      </span> */}
       <span>Your Cart</span>
       <span className={classes.badge}>
         {numberOfItems}

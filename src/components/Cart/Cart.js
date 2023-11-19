@@ -1,10 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
+
 import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
 import CartItem from "./CartItem";
 import CartContext from "../store/cart-context";
+import { useNavigate } from "react-router-dom";
 
 function Cart(props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [islogged, setIslogged] = useState(false);
+  //when islogged is true, pgae navigate ahead to showingorder
+  //when islogged is false, page navigate to login page
+  setIslogged(false);
   const cartcontextItems = useContext(CartContext);
   const itemsArrays = cartcontextItems.items;
   const hasItems = itemsArrays.length > 0;
@@ -15,20 +24,26 @@ function Cart(props) {
       ...item,
       amount: 1,
     };
+    dispatch({ type: "add", item: temp });
     cartcontextItems.addItem(temp);
   }
 
   function onRemoval(id) {
+    dispatch({ type: "remove", id: id });
     cartcontextItems.removeItem(id);
   }
 
   function onClear() {
+    navigate("/");
     cartcontextItems.clearCart();
+    dispatch({ type: "clear" });
   }
 
+  // order button click handler
   function OnOrderClickHandler() {
+    if (islogged) navigate("/showingOrder");
+    if (!islogged) navigate("/login");
     props.toCloseCart();
-    props.toShowOrders();
   }
 
   const cart = (

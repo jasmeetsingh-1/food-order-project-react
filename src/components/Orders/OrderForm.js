@@ -18,13 +18,13 @@ const validationSchema = Yup.object({
   city: Yup.string().required("*Mandatory"),
 });
 const initialValues = {
-  firstname: "",
-  lastname: "",
-  address: "",
-  country: "",
-  number: "",
-  zipcode: "",
-  city: "",
+  firstname: "Jasmeet",
+  lastname: "Singh",
+  address: "12121",
+  country: "jasmee",
+  number: "12",
+  zipcode: "12",
+  city: "amritsa",
   state: "",
 };
 const indianStates = [
