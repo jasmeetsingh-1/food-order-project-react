@@ -8,7 +8,7 @@ import OrderForm from "./components/Orders/OrderForm";
 // import CartContext from "./components/store/cart-context";
 import { Provider } from "react-redux";
 import store from "./components/OrderFromRedux/store/store";
-import Login from "./components/login/login";
+import LoginPage from "./components/login/loginpage";
 
 function App() {
   // const cartContext = useContext(CartContext);
@@ -53,7 +53,7 @@ function App() {
             </>
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route
           exact
           path="/"
