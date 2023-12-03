@@ -9,6 +9,8 @@ import {
   MDBInput,
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { useNavigate } from "react-router-dom";
 
 import "./cssFiles/loginComponent.css";
@@ -27,6 +29,83 @@ function LoginPage() {
     usernameLogin: "",
     passwordLogin: "",
   });
+
+  const toastConfig = {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  };
+
+  function signUpFormHandler() {
+    if (!/^[a-zA-Z0-9_]+$/.test(signUpFormData.username)) {
+      toast.error(
+        "Invalid username: Username can only contain letters, numbers, and underscores.",
+        toastConfig
+      );
+      return;
+    }
+    if (/\s/.test(signUpFormData.password)) {
+      toast.error(
+        "Invalid password: password cant have whitespaces",
+        toastConfig
+      );
+      return;
+    }
+    if (signUpFormData.confirmpassword !== signUpFormData.password) {
+      toast.error("Password and Confirm password must match", toastConfig);
+      return;
+    }
+    if (signUpFormData.password < 6) {
+      toast.error("Password must more then 6 characters", toastConfig);
+    }
+    if (!/^[a-zA-Z0-9_\s]+$/.test(signUpFormData.name)) {
+      toast.error(
+        "Invalid name: Name can only contain letters, numbers, underscores, and spaces.",
+        toastConfig
+      );
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signUpFormData.email)) {
+      toast.error("Invalid Email address", toastConfig);
+      return;
+    }
+
+    toast.success("Sign Up Successful", toastConfig);
+    console.log("SignUp Form:", signUpFormData);
+  }
+
+  function loginFormHandler() {
+    if (loginFormData.usernameLogin.length === 0) {
+      toast.warn("Please enter username", toastConfig);
+      return;
+    }
+    if (loginFormData.passwordLogin.length === 0) {
+      toast.warn("Please enter Password", toastConfig);
+      return;
+    }
+    if (!/^[a-zA-Z0-9_]+$/.test(loginFormData.usernameLogin)) {
+      toast.error(
+        "Invalid username: Username can only contain letters, numbers, and underscores.",
+        toastConfig
+      );
+      return;
+    }
+    if (/\s/.test(loginFormData.passwordLogin)) {
+      toast.error(
+        "Invalid password: password cant have whitespaces",
+        toastConfig
+      );
+      return;
+    }
+
+    toast.success("Login Successful", toastConfig);
+    console.log("Login Form Data:", loginFormData);
+  }
 
   // const navigate = useNavigate();
   const [signup, setSignUp] = useState(false);
@@ -55,7 +134,7 @@ function LoginPage() {
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();
-                    console.log("on submit:", signUpFormData);
+                    signUpFormHandler();
                   }}
                 >
                   <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
@@ -163,9 +242,6 @@ function LoginPage() {
                       color="white"
                       size="lg"
                       type="submit"
-                      onClick={() => {
-                        console.log("button clicked");
-                      }}
                     >
                       SignUp
                     </MDBBtn>
@@ -215,7 +291,7 @@ function LoginPage() {
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();
-                    console.log(loginFormData);
+                    loginFormHandler();
                   }}
                 >
                   <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
@@ -269,9 +345,6 @@ function LoginPage() {
                       color="white"
                       size="lg"
                       type="submit"
-                      onClick={() => {
-                        console.log("login submit");
-                      }}
                     >
                       Login
                     </MDBBtn>
@@ -300,6 +373,7 @@ function LoginPage() {
           </MDBRow>
         </MDBContainer>
       )}
+      <ToastContainer />
     </>
   );
 }
