@@ -11,12 +11,13 @@ import {
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./cssFiles/loginComponent.css";
 import Header from "../Layout/Header";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [signUpFormData, setSignUpFormData] = useState({
     username: "",
     password: "",
@@ -77,6 +78,9 @@ function LoginPage() {
 
     toast.success("Sign Up Successful", toastConfig);
     console.log("SignUp Form:", signUpFormData);
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   }
 
   function loginFormHandler() {
@@ -105,9 +109,12 @@ function LoginPage() {
 
     toast.success("Login Successful", toastConfig);
     console.log("Login Form Data:", loginFormData);
+
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   }
 
-  // const navigate = useNavigate();
   const [signup, setSignUp] = useState(false);
   return (
     <>

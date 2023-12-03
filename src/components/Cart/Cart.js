@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 function Cart(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [islogged, setIslogged] = useState(false);
+  const [islogged, setIslogged] = useState(true);
   //when islogged is true, pgae navigate ahead to showingorder
   //when islogged is false, page navigate to login page
 
   useEffect(() => {
-    setIslogged(false);
+    setIslogged(true);
   }, []);
   const cartcontextItems = useContext(CartContext);
   const itemsArrays = cartcontextItems.items;
