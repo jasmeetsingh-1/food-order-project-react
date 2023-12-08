@@ -5,16 +5,12 @@ import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
 import Cart from "./components/Cart/Cart";
 import OrderForm from "./components/Orders/OrderForm";
-// import CartContext from "./components/store/cart-context";
 import { Provider } from "react-redux";
 import store from "./components/OrderFromRedux/store/store";
 import LoginPage from "./components/login/loginpage";
 
 function App() {
-  // const cartContext = useContext(CartContext);
   const [showingCart, setShowingCart] = useState(false);
-  // const [showingOrders, setShowingOrders] = useState(false);
-  // const [showingFeedback, setShowingFeedback] = useState(false);
 
   function showCart() {
     setShowingCart(true);
@@ -22,17 +18,7 @@ function App() {
 
   function hideCart() {
     setShowingCart(false);
-    // setShowingFeedback(false);
   }
-
-  function hideOrders() {
-    // setShowingFeedback(true);
-  }
-
-  // function closeFeedback() {
-  //   cartContext.clearCart();
-  // }
-
   function goBack() {
     setShowingCart(true);
   }
@@ -46,7 +32,6 @@ function App() {
             <>
               <OrderForm
                 toShowCart={showCart}
-                toContinueHandler={hideOrders}
                 toGoBack={goBack}
               />
               {showingCart && <Cart toCloseCart={hideCart} />}
