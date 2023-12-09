@@ -43,6 +43,10 @@ function LoginPage() {
   };
 
   function signUpFormHandler() {
+    if(signUpFormData.username.length=== 0 || signUpFormData.name.length===0 || signUpFormData.email.length===0|| signUpFormData.password.length===0 ){
+      toast.warn("All fields are mandatory", toastConfig);
+      return;
+    }
     if (!/^[a-zA-Z0-9_]+$/.test(signUpFormData.username)) {
       toast.error(
         "Invalid username: Username can only contain letters, numbers, and underscores.",
@@ -76,11 +80,18 @@ function LoginPage() {
       return;
     }
 
+    setSignUpFormData({
+      username: signUpFormData.username.trim(),
+      name: signUpFormData.name.trim(),
+      password: signUpFormData.password.trim(),
+      confirmpassword: signUpFormData.confirmpassword.trim(),
+      email: signUpFormData.email.trim(),
+    });
     toast.success("Sign Up Successful", toastConfig);
     console.log("SignUp Form:", signUpFormData);
     setTimeout(() => {
       navigate("/");
-    }, 2000);
+    }, 1800);
   }
 
   function loginFormHandler() {
@@ -112,10 +123,11 @@ function LoginPage() {
 
     setTimeout(() => {
       navigate("/");
-    }, 2000);
+    }, 1800);
   }
 
-  const [signup, setSignUp] = useState(false);
+  const [usernameErrorSignUp, setusernameErrorSignUp] = useState(false);
+  const [signup, setSignUp] = useState(false); //if true we get the signup form
   return (
     <>
       <Header />
@@ -152,6 +164,21 @@ function LoginPage() {
                       Login for a seamless experience
                     </p>
 
+                    {usernameErrorSignUp ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "end",
+                          width: "inherit",
+                        }}
+                      >
+                        <p style={{ color: "red", fontSize: "x-small" }}>
+                          White spaces not allowed in username
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                     <MDBInput
                       wrapperClass="mb-4 mx-5 w-100"
                       labelClass="text-white"
@@ -165,8 +192,15 @@ function LoginPage() {
                         const usernameValue = event.target.value;
                         setSignUpFormData({
                           ...signUpFormData,
-                          username: usernameValue,
+                          username: usernameValue.trim(),
                         });
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.keyCode === 32) {
+                          setusernameErrorSignUp(true);
+                        } else {
+                          setusernameErrorSignUp(false);
+                        }
                       }}
                       style={{ color: "white" }}
                     />
@@ -309,6 +343,21 @@ function LoginPage() {
                       Login for a seamless experience
                     </p>
 
+                    {usernameErrorSignUp ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "end",
+                          width: "inherit",
+                        }}
+                      >
+                        <p style={{ color: "red", fontSize: "x-small" }}>
+                          White spaces not allowed in username
+                        </p>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                     <MDBInput
                       wrapperClass="mb-4 mx-5 w-100"
                       labelClass="text-white"
@@ -322,8 +371,15 @@ function LoginPage() {
                         const usernameLoginValue = e.target.value;
                         setLoginFormData({
                           ...loginFormData,
-                          usernameLogin: usernameLoginValue,
+                          usernameLogin: usernameLoginValue.trim(),
                         });
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.keyCode === 32) {
+                          setusernameErrorSignUp(true);
+                        } else {
+                          setusernameErrorSignUp(false);
+                        }
                       }}
                       style={{ color: "white" }}
                     />
